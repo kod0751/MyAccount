@@ -8,7 +8,7 @@ import Flex from '@shared/Flex'
 import Text from '@shared/Text'
 
 import useEventBanners from './hooks/useEventBanners'
-import Skeleton from '../shared/Skelton'
+import Skeleton from '../shared/Skeleton'
 
 function EventBanners() {
   const { data } = useEventBanners()
