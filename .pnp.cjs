@@ -41,6 +41,7 @@ const RAW_RUNTIME_STATE =
           ["prettier", "npm:3.5.3"],\
           ["react", "npm:18.3.1"],\
           ["react-dom", "virtual:c9174ec5f9ec213eb6533e674c50675c56592f9d698fea2223777cdb8a3308b3c053abf24280dc948155e3f91b0d173022ba13e8c27625cf68634d6bea3442f8#npm:18.3.1"],\
+          ["react-infinite-scroll-component", "virtual:c9174ec5f9ec213eb6533e674c50675c56592f9d698fea2223777cdb8a3308b3c053abf24280dc948155e3f91b0d173022ba13e8c27625cf68634d6bea3442f8#npm:6.1.0"],\
           ["react-query", "virtual:c9174ec5f9ec213eb6533e674c50675c56592f9d698fea2223777cdb8a3308b3c053abf24280dc948155e3f91b0d173022ba13e8c27625cf68634d6bea3442f8#npm:3.39.3"],\
           ["swiper", "npm:11.2.5"],\
           ["typescript", "patch:typescript@npm%3A5.8.2#optional!builtin<compat/typescript>::version=5.8.2&hash=5786d5"]\
@@ -4722,6 +4723,7 @@ const RAW_RUNTIME_STATE =
           ["prettier", "npm:3.5.3"],\
           ["react", "npm:18.3.1"],\
           ["react-dom", "virtual:c9174ec5f9ec213eb6533e674c50675c56592f9d698fea2223777cdb8a3308b3c053abf24280dc948155e3f91b0d173022ba13e8c27625cf68634d6bea3442f8#npm:18.3.1"],\
+          ["react-infinite-scroll-component", "virtual:c9174ec5f9ec213eb6533e674c50675c56592f9d698fea2223777cdb8a3308b3c053abf24280dc948155e3f91b0d173022ba13e8c27625cf68634d6bea3442f8#npm:6.1.0"],\
           ["react-query", "virtual:c9174ec5f9ec213eb6533e674c50675c56592f9d698fea2223777cdb8a3308b3c053abf24280dc948155e3f91b0d173022ba13e8c27625cf68634d6bea3442f8#npm:3.39.3"],\
           ["swiper", "npm:11.2.5"],\
           ["typescript", "patch:typescript@npm%3A5.8.2#optional!builtin<compat/typescript>::version=5.8.2&hash=5786d5"]\
@@ -5195,6 +5197,29 @@ const RAW_RUNTIME_STATE =
           ["loose-envify", "npm:1.4.0"],\
           ["react", "npm:18.3.1"],\
           ["scheduler", "npm:0.23.2"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["react-infinite-scroll-component", [\
+      ["npm:6.1.0", {\
+        "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/react-infinite-scroll-component-npm-6.1.0-fc628f1f18-10c0.zip/node_modules/react-infinite-scroll-component/",\
+        "packageDependencies": [\
+          ["react-infinite-scroll-component", "npm:6.1.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:c9174ec5f9ec213eb6533e674c50675c56592f9d698fea2223777cdb8a3308b3c053abf24280dc948155e3f91b0d173022ba13e8c27625cf68634d6bea3442f8#npm:6.1.0", {\
+        "packageLocation": "./.yarn/__virtual__/react-infinite-scroll-component-virtual-a4a5d338ee/5/AppData/Local/Yarn/Berry/cache/react-infinite-scroll-component-npm-6.1.0-fc628f1f18-10c0.zip/node_modules/react-infinite-scroll-component/",\
+        "packageDependencies": [\
+          ["react-infinite-scroll-component", "virtual:c9174ec5f9ec213eb6533e674c50675c56592f9d698fea2223777cdb8a3308b3c053abf24280dc948155e3f91b0d173022ba13e8c27625cf68634d6bea3442f8#npm:6.1.0"],\
+          ["@types/react", "npm:18.3.18"],\
+          ["react", "npm:18.3.1"],\
+          ["throttle-debounce", "npm:2.3.0"]\
         ],\
         "packagePeers": [\
           "@types/react",\
@@ -5838,6 +5863,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/text-table-npm-0.2.0-d92a778b59-10c0.zip/node_modules/text-table/",\
         "packageDependencies": [\
           ["text-table", "npm:0.2.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["throttle-debounce", [\
+      ["npm:2.3.0", {\
+        "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/throttle-debounce-npm-2.3.0-0e354dff02-10c0.zip/node_modules/throttle-debounce/",\
+        "packageDependencies": [\
+          ["throttle-debounce", "npm:2.3.0"]\
         ],\
         "linkType": "HARD"\
       }]\
