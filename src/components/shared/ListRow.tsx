@@ -1,6 +1,8 @@
-import { css } from '@emotion/react'
+import { css, SerializedStyles } from '@emotion/react'
 import Flex from './Flex'
 import Text from './Text'
+import Skeleton from './Skeleton'
+import Spacing from './Spacing'
 
 interface ListRowProps {
   left?: React.ReactNode
@@ -9,21 +11,28 @@ interface ListRowProps {
   withArrow?: boolean
   onClick?: () => void
   as?: 'div' | 'li'
+  style?: SerializedStyles
 }
 
-export default function ListRow({
+function ListRow({
   as = 'li',
   left,
   contents,
   right,
   withArrow,
   onClick,
+  style,
 }: ListRowProps) {
   return (
-    <Flex as={as} css={listRowContainerStyles} onClick={onClick} align="center">
-      <Flex css={listRowLeftStyles}>{left}</Flex>
+    <Flex
+      as={as}
+      css={[listRowContainerStyles, style]}
+      onClick={onClick}
+      align="center"
+    >
+      {left && <Flex css={listRowLeftStyles}>{left}</Flex>}
       <Flex css={listRowContentsStyles}>{contents}</Flex>
-      <Flex>{right}</Flex>
+      {right && <Flex>{right}</Flex>}
       {withArrow ? <IconArrowRight /> : null}
     </Flex>
   )
@@ -56,6 +65,26 @@ function ListRowTexts({
   )
 }
 
+function ListRowSkeleton() {
+  return (
+    <Flex as="li" css={listRowContainerStyles} align="center">
+      <Flex css={listRowLeftStyles}></Flex>
+      <Flex css={listRowContentsStyles}>
+        <ListRow.Texts
+          title={
+            <>
+              <Skeleton width={67} height={23} />
+              <Spacing size={2} />
+            </>
+          }
+          subTitle={<Skeleton width={85} height={20} />}
+        />
+      </Flex>
+      <IconArrowRight />
+    </Flex>
+  )
+}
+
 function IconArrowRight() {
   return (
     <svg
@@ -71,3 +100,6 @@ function IconArrowRight() {
 }
 
 ListRow.Texts = ListRowTexts
+ListRow.Skeleton = ListRowSkeleton
+
+export default ListRow
