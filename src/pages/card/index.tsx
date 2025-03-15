@@ -6,6 +6,8 @@ import { useRouter } from 'next/router'
 import { getCards } from '@remote/card'
 import ListRow from '@shared/ListRow'
 import Badge from '@shared/Badge'
+import Top from '@/components/shared/Top'
+import Input from '@/components/shared/Input'
 
 export default function CardListPage() {
   const {
@@ -37,6 +39,14 @@ export default function CardListPage() {
 
   return (
     <div>
+      <Top title="추천카드" subTitle="회원님을 위해 준비했어요" />
+      <div style={{ padding: '0 24px 12px 24px' }}>
+        <Input
+          onFocus={() => {
+            navigate.push('/card/search')
+          }}
+        />
+      </div>
       <InfiniteScroll
         dataLength={cards.length}
         hasMore={hasNextPage}
