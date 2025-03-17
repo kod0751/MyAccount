@@ -8,17 +8,23 @@ import { getSearchCards } from '@remote/card'
 import ListRow from '@shared/ListRow'
 import Text from '@shared/Text'
 import Badge from '@shared/Badge'
+import useDebounce from '@/components/shared/hocs/useDebounce'
 
 export default function SearchPage() {
   const [keyword, setKeyword] = useState('')
+  const debouncedKeyword = useDebounce(keyword)
 
   const navigate = useRouter()
 
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const { data } = useQuery(['cards', keyword], () => getSearchCards(keyword), {
-    enabled: keyword !== '',
-  })
+  const { data } = useQuery(
+    ['cards', debouncedKeyword],
+    () => getSearchCards(debouncedKeyword),
+    {
+      enabled: debouncedKeyword !== '',
+    },
+  )
 
   useEffect(() => {
     if (inputRef.current) {
