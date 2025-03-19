@@ -6,6 +6,7 @@ import Layout from '@shared/Layout'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { SessionProvider } from 'next-auth/react'
 import AuthGuard from '@/components/auth/AuthGuard'
+import Navbar from '@/components/shared/NavBar'
 
 const client = new QueryClient({})
 
@@ -20,6 +21,7 @@ export default function App({
         <QueryClientProvider client={client}>
           <Hydrate state={dehydratedState}>
             <AuthGuard>
+              <Navbar />
               <Component {...pageProps} />
             </AuthGuard>
           </Hydrate>
