@@ -5,6 +5,7 @@ import globalStyles from '@styles/globalStyles'
 import Layout from '@shared/Layout'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { SessionProvider } from 'next-auth/react'
+import AuthGuard from '@/components/auth/AuthGuard'
 
 const client = new QueryClient({})
 
@@ -18,7 +19,9 @@ export default function App({
       <SessionProvider session={session}>
         <QueryClientProvider client={client}>
           <Hydrate state={dehydratedState}>
-            <Component {...pageProps} />
+            <AuthGuard>
+              <Component {...pageProps} />
+            </AuthGuard>
           </Hydrate>
         </QueryClientProvider>
       </SessionProvider>
