@@ -1,7 +1,11 @@
 import { GetServerSidePropsContext } from 'next'
+import { useQuery } from 'react-query'
+import { isAfter, parseISO } from 'date-fns'
 
 import { getEvent } from '@remote/event'
 import { Event } from '@models/event'
+import Preview from '@components/event/Preview'
+import { useAlertContext } from '@/contexts/AlertContext'
 
 interface EventPageProps {
   initialEvent: Event
@@ -9,10 +13,30 @@ interface EventPageProps {
 }
 
 function EventPage({ initialEvent, id }: EventPageProps) {
-  console.log('initialEvent', initialEvent)
-  console.log('id', id)
+  const { open } = useAlertContext()
 
-  return <div>EventPage</div>
+  const { data } = useQuery(['event', id], () => getEvent(id), {
+    initialData: initialEvent,
+    onSuccess: (event) => {
+      const eventEnd = isAfter(new Date(), parseISO(event.endDate))
+
+      if (eventEnd) {
+        open({
+          title: `${event.title} 이벤트가 종료되었어요`,
+          description: '다음에 더 좋은 이벤트로 찾아오겠습니다',
+          onButtonClick: () => {
+            window.history.back()
+          },
+        })
+      }
+    },
+  })
+
+  if (data == null) {
+    return null
+  }
+
+  return <Preview data={data} />
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
