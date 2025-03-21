@@ -6,6 +6,7 @@ import Flex from '@shared/Flex'
 import TextField from '@shared/TextField'
 import Button from '@shared/Button'
 import { COLLECTIONS } from '@constants/collection'
+import Preview from '@components/event/Preview'
 
 export default function EventForm() {
   const [formValues, setFormValues] = useState({
@@ -77,6 +78,9 @@ export default function EventForm() {
             onChange={handleFormValues}
             value={formValues.endDate}
           />
+        </Flex>
+        <Flex style={{ flex: 2 }}>
+          <Preview data={formValues} mode="edit" />
         </Flex>
       </Flex>
       <Button onClick={handleSubmit} disabled={finishState === false}>

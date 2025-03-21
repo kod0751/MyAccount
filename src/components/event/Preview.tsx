@@ -7,12 +7,13 @@ import { Event } from '@models/event'
 import Flex from '@shared/Flex'
 import Text from '@shared/Text'
 import { typographyMap } from '@styles/typography'
+import Button from '@shared/Button'
 
 const FixedBottomButton = dynamic(() => import('@shared/FixedBottomButton'), {
   ssr: false,
 })
 
-function Preview({ data }: { data: Event }) {
+function Preview({ data, mode }: { data: Event; mode: 'preview' | 'edit' }) {
   console.log('preview', data)
 
   const { title, subTitle, buttonLabel, link, contents } = data
@@ -29,12 +30,16 @@ function Preview({ data }: { data: Event }) {
         <ReactMarkdown>{contents}</ReactMarkdown>
       </div>
 
-      <FixedBottomButton
-        label={buttonLabel}
-        onClick={() => {
-          router.push(link)
-        }}
-      />
+      {mode === 'preview' ? (
+        <FixedBottomButton
+          label={buttonLabel}
+          onClick={() => {
+            router.push(link)
+          }}
+        />
+      ) : (
+        <Button>{buttonLabel}</Button>
+      )}
     </Flex>
   )
 }
