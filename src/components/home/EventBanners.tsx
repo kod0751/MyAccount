@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { css } from '@emotion/react'
 
-import withSusepense from '../shared/hocs/withSuspense'
+import withSusepense from '@hooks/withSuspense'
 import Flex from '@shared/Flex'
 import Text from '@shared/Text'
 

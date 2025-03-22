@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import withSusepense from '@shared/hocs/withSuspense'
+import withSusepense from '@hooks/withSuspense'
 import Text from '@shared/Text'
 
 import ListRow from '@shared/ListRow'
