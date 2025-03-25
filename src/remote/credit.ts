@@ -1,7 +1,8 @@
-import { collection, doc, setDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, setDoc } from 'firebase/firestore'
 
 import { COLLECTIONS } from '@constants/collection'
 import { store } from '@remote/firebase'
+import { Credit } from '@models/credit'
 
 export function updateCredit({
   userId,
@@ -14,4 +15,19 @@ export function updateCredit({
     userId,
     creditScore,
   })
+}
+
+export async function getCredit(userId: string) {
+  const snapshot = await getDoc(
+    doc(collection(store, COLLECTIONS.CREDIT), userId),
+  )
+
+  if (snapshot.exists() === false) {
+    return null
+  }
+
+  return {
+    id: snapshot.id,
+    ...(snapshot.data() as Credit),
+  }
 }

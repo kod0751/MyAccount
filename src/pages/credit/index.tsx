@@ -1,6 +1,9 @@
 import dynamic from 'next/dynamic'
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
+import { getSession } from 'next-auth/react'
+import { dehydrate, QueryClient } from 'react-query'
+import { GetServerSidePropsContext } from 'next'
 
 import Flex from '@shared/Flex'
 import Text from '@shared/Text'
@@ -9,13 +12,19 @@ import CreditScoreChart from '@shared/CreditScoreChart'
 import ListRow from '@shared/ListRow'
 import useUser from '@/hooks/useUser'
 import { useAlertContext } from '@/contexts/AlertContext'
+import { User } from '@models/user'
+import { getCredit } from '@remote/credit'
+import useCredit from '@components/credit/hooks/useCredit'
 
 const FixedBottomButton = dynamic(() => import('@shared/FixedBottomButton'))
 export default function CreditPage() {
-  const CreditScoreCheck = true
   const user = useUser()
   const { open } = useAlertContext()
   const navigate = useRouter()
+
+  const { data } = useCredit()
+
+  console.log(data)
 
   const handleCheck = useCallback(() => {
     if (user == null) {
@@ -34,7 +43,7 @@ export default function CreditPage() {
     navigate.push('/credit/check')
   }, [user, navigate, open])
 
-  return CreditScoreCheck ? (
+  return data != null ? (
     <div>
       <Spacing size={40} />
       <Flex align="center" direction="column">
@@ -42,8 +51,7 @@ export default function CreditPage() {
           나의 신용점수
         </Text>
         <Spacing size={10} />
-        {/*TODO: 실제점수 데이터 */}
-        <CreditScoreChart score={0} />
+        <CreditScoreChart score={data.creditScore} />
       </Flex>
       <Spacing size={80} />
       <ul>
@@ -98,4 +106,26 @@ export default function CreditPage() {
       />
     </div>
   )
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getSession(context)
+
+  if (session != null && session.user != null) {
+    const client = new QueryClient()
+
+    await client.prefetchQuery(['credit', (session.user as User).id], () =>
+      getCredit((session.user as User).id),
+    )
+
+    return {
+      props: {
+        dehydratedState: JSON.parse(JSON.stringify(dehydrate(client))),
+      },
+    }
+  }
+
+  return {
+    props: {},
+  }
 }
