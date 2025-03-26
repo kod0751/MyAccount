@@ -9,7 +9,11 @@ const FixedBottomButton = dynamic(() => import('@shared/FixedBottomButton'), {
   ssr: false,
 })
 
-export default function Terms() {
+export default function Terms({
+  onNext,
+}: {
+  onNext: (termIds: string[]) => void
+}) {
   const [termsAgreements, setTermsAgreements] = useState(() =>
     generateIntitalValues(TERMSLIST),
   )
@@ -57,7 +61,11 @@ export default function Terms() {
       <FixedBottomButton
         label="약관동의"
         disabled={essCheckedTerms === false}
-        onClick={() => {}}
+        onClick={() => {
+          onNext(
+            termsAgreements.filter((term) => term.checked).map(({ id }) => id),
+          )
+        }}
       />
     </div>
   )
