@@ -38,3 +38,18 @@ export function createAccount(newAccount: Account) {
     newAccount,
   )
 }
+
+export async function getAccount(userId: string) {
+  const snapshot = await getDoc(
+    doc(collection(store, COLLECTIONS.ACCOUNT), userId),
+  )
+
+  if (snapshot.exists() === false) {
+    return null
+  }
+
+  return {
+    id: snapshot.id,
+    ...(snapshot.data() as Account),
+  }
+}

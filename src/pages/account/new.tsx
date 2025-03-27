@@ -6,7 +6,7 @@ import withAuth from '@hooks/withAuth'
 import ProgressBar from '@components/shared/ProgressBar'
 import Terms from '@components/account/Terms'
 import useUser from '@hooks/useUser'
-import { createAccount, getTerms, setTerms } from '@remote/account'
+import { createAccount, getAccount, getTerms, setTerms } from '@remote/account'
 import { User } from '@models/user'
 import Form from '@components/account/Form'
 import { Account } from '@models/account'
@@ -68,7 +68,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     }
   }
 
-  if (agreedTerms != null) {
+  const account = await getAccount((session?.user as User).id)
+
+  if (account == null) {
     return {
       props: {
         initialStep: 1,
@@ -78,7 +80,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   return {
     props: {
-      initialStep: 0,
+      initialStep: 2,
     },
   }
 }
