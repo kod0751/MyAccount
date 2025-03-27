@@ -1,21 +1,25 @@
-import { colors } from '@styles/colorPalette'
-import styled from '@emotion/styled'
 import { forwardRef, SelectHTMLAttributes } from 'react'
+
 import Flex from './Flex'
 import Text from './Text'
-import { Option } from '@models/apply'
+import styled from '@emotion/styled'
+import { colors } from '@styles/colorPalette'
+
+export interface Option {
+  label: string
+  value: string | number | undefined
+}
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string
   options: Option[]
-  placeholder: string
+  placeholder?: string
 }
 
 const BaseSelect = styled.select`
   height: 52px;
-  background-color: ${colors.grey};
-  border: none;
-  border-radius: 16px;
+  border: 1px solid ${colors.gray};
+  border-radius: 6px;
   padding: 0 16px;
   cursor: pointer;
 
@@ -23,6 +27,7 @@ const BaseSelect = styled.select`
     color: #c0c4c7;
   }
 `
+
 const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select(
   { label, options, placeholder, value, ...props },
   ref,
