@@ -6,9 +6,10 @@ import withAuth from '@hooks/withAuth'
 import ProgressBar from '@components/shared/ProgressBar'
 import Terms from '@components/account/Terms'
 import useUser from '@hooks/useUser'
-import { getTerms, setTerms } from '@remote/account'
+import { createAccount, getTerms, setTerms } from '@remote/account'
 import { User } from '@models/user'
 import Form from '@components/account/Form'
+import { Account } from '@models/account'
 
 // STEP 0 = 약관동의
 // STEP 1 = 계좌 개설 폼 페이지
@@ -35,8 +36,18 @@ function AccountNew({ initialStep }: { initialStep: number }) {
 
       {step === 1 ? (
         <Form
-          onNext={(formValues) => {
-            console.log('fomrValues', formValues)
+          onNext={async (formValues) => {
+            const newAccount = {
+              ...formValues,
+              accountNumber: Date.now(),
+              balance: 0,
+              status: 'READY',
+              userId: user?.id as string,
+            } as Account
+
+            await createAccount(newAccount)
+
+            setStep(step + 1)
           }}
         />
       ) : null}

@@ -22,3 +22,16 @@ interface SelectFieldForm extends BaseForm {
 }
 
 export type AccountForm = TextFieldForm | SelectFieldForm
+
+type AccountStatus = 'READY' | 'DONE'
+
+export interface Account {
+  accountName: string
+  accountNumber: number
+  balance: number
+  email: string
+  name: string
+  phone: string
+  status: AccountStatus
+  userId: string
+}

@@ -2,6 +2,7 @@ import { collection, doc, getDoc, setDoc } from 'firebase/firestore'
 
 import { COLLECTIONS } from '@constants/collection'
 import { store } from '@remote/firebase'
+import { Account } from '@models/account'
 
 export function setTerms({
   userId,
@@ -29,4 +30,11 @@ export async function getTerms(userId: string) {
     id: snapshot.id,
     ...(snapshot.data() as { userId: string; termIds: string[] }),
   }
+}
+
+export function createAccount(newAccount: Account) {
+  return setDoc(
+    doc(collection(store, COLLECTIONS.ACCOUNT), newAccount.userId),
+    newAccount,
+  )
 }
