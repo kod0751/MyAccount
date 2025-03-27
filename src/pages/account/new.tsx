@@ -8,6 +8,7 @@ import Terms from '@components/account/Terms'
 import useUser from '@hooks/useUser'
 import { getTerms, setTerms } from '@remote/account'
 import { User } from '@models/user'
+import Form from '@components/account/Form'
 
 // STEP 0 = 약관동의
 // STEP 1 = 계좌 개설 폼 페이지
@@ -28,6 +29,14 @@ function AccountNew({ initialStep }: { initialStep: number }) {
             await setTerms({ userId: user?.id as string, termIds })
 
             setStep(step + 1)
+          }}
+        />
+      ) : null}
+
+      {step === 1 ? (
+        <Form
+          onNext={(formValues) => {
+            console.log('fomrValues', formValues)
           }}
         />
       ) : null}
