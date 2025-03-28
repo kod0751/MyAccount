@@ -1,9 +1,10 @@
-import CardListAddButton from '@/components/test/CardListAddButton'
-import EventBannerAddButton from '@/components/test/EventBannerAddButton'
+import CardListAddButton from '@components/test/CardListAddButton'
+import EventBannerAddButton from '@components/test/EventBannerAddButton'
 import EventForm from '@/components/test/EventForm'
 import Flex from '@shared/Flex'
 import Text from '@shared/Text'
 import Spacing from '@shared/Spacing'
+import TransactionForm from '@components/test/TransactionForm'
 
 export default function test() {
   return (
@@ -25,6 +26,15 @@ export default function test() {
       />
 
       <EventForm />
+
+      <Spacing
+        size={8}
+        backgroundColor="gray100"
+        style={{ margin: '20px 0' }}
+      />
+
+      <Text bold={true}>입출금 테스트</Text>
+      <TransactionForm />
     </Flex>
   )
 }
