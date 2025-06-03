@@ -1,4 +1,5 @@
 import { collection, getDocs } from 'firebase/firestore'
+import { useEffect, useState } from 'react'
 
 import { store } from '@remote/firebase'
 import { COLLECTIONS } from '@constants/collection'
@@ -9,8 +10,24 @@ interface FAQ {
   question: string
   answer: string
 }
+// export default function FAQPage({ faqs }: { faqs: FAQ[] })
+export default function FAQPage() {
+  const [faqs, setFaqs] = useState<FAQ[]>([])
 
-export default function FAQPage({ faqs }: { faqs: FAQ[] }) {
+  useEffect(() => {
+    getDocs(collection(store, COLLECTIONS.FAQ)).then((snapshot) => {
+      const faqs = snapshot.docs.map(
+        (doc) =>
+          ({
+            id: doc.id,
+            ...doc.data(),
+          }) as FAQ,
+      )
+
+      setFaqs(faqs)
+    })
+  }, [])
+
   return (
     <div>
       {faqs.map((faq) => (
@@ -25,15 +42,15 @@ export default function FAQPage({ faqs }: { faqs: FAQ[] }) {
   )
 }
 
-export async function getStaticProps() {
-  const snapshot = await getDocs(collection(store, COLLECTIONS.FAQ))
+// export async function getStaticProps() {
+//   const snapshot = await getDocs(collection(store, COLLECTIONS.FAQ))
 
-  const faqs = snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }))
+//   const faqs = snapshot.docs.map((doc) => ({
+//     id: doc.id,
+//     ...doc.data(),
+//   }))
 
-  return {
-    props: { faqs },
-  }
-}
+//   return {
+//     props: { faqs },
+//   }
+// }
