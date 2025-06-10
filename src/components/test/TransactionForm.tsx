@@ -26,8 +26,6 @@ export default function TransactionForm() {
     }))
   }
 
-  console.log('formValues', formValues)
-
   const handleSubmit = async () => {
     const account = await getAccount(formValues.userId)
 
@@ -58,8 +56,6 @@ export default function TransactionForm() {
       date: new Date().toISOString(),
       balance,
     } as Transaction
-
-    console.log('newTransaction', newTransaction)
 
     await Promise.all([
       createTransaction(newTransaction),

@@ -28,8 +28,6 @@ export default function EventForm() {
     [],
   )
 
-  console.log('formValues', formValues)
-
   const handleSubmit = async () => {
     await setDoc(doc(collection(store, COLLECTIONS.EVENT)), formValues)
 

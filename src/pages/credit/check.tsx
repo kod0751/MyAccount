@@ -20,7 +20,6 @@ export default function CreditCheckPage() {
 
   const { data: status } = useCreditCheck({
     onSuccess: (creditScore) => {
-      console.log(creditScore)
       setReadyToPoll(false)
       mutate(creditScore)
     },

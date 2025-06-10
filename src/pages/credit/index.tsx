@@ -24,8 +24,6 @@ export default function CreditPage() {
 
   const { data } = useCredit()
 
-  console.log(data)
-
   const handleCheck = useCallback(() => {
     if (user == null) {
       open({
