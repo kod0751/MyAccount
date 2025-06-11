@@ -1,17 +1,15 @@
 # 💰 내 자산 - 계좌관리 및 자산 조회
 
+## 배포
+
+배포 주소 - https://my-account-nine.vercel.app/account
+
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
