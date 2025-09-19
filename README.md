@@ -18,7 +18,7 @@
 
 ## 배포
 
-배포 주소 - https://my-account-nine.vercel.app/account
+배포 주소 - https://my-account-nine.vercel.app
 
 ## 설치 방법
 
