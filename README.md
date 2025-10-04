@@ -2,10 +2,10 @@
 
 ## 주요 기능
 
-- OAuth 로그인
-- 사용자 정보 조회/수정
-- 결제 내역 확인
-- Responsive 디자인 (모바일/PC 대응)
+- NextAuth.js를 활용한 OAuth 2.0 기반 구글 소셜 로그인 및 JWT 세션 관리
+- Firebase Firestore를 활용한 실시간 데이터베이스 구축
+- Skeleton UI 구현으로 로딩 상태의 사용자 경험 개선
+- Framer Motion을 활용한 카드 혜택 정보의 순차적 애니메이션 효과 구현
 
 ## 기술 스택
 
